@@ -1,0 +1,72 @@
+javascript functions
+
+function tcs_easyqueation(params) {
+        if ((params[0] == params[1]) == params[2]) {
+          return 0;
+        }
+        if (
+          ((params[0] % 2 == params[1] % 2) == params[2] % 2) == 0 ||
+          ((params[0] % 2 == params[1] % 2) == params[2] % 2) == 1
+        ) {
+          for (let index = 0; index < params.length; index++) {
+            if (params[index] == params[(index + 1) % 3]) {
+              return Math.abs(params[index] - params[(index + 2) % 3]) / 2;
+            }
+            if (params[index] == params[(index + 2) % 3]) {
+              return Math.abs(params[index] - params[(index + 1) % 3]) / 2;
+            }
+          }
+        }
+        return -1;
+      }
+      console.log(tcseasyqueation([7, 7, 11]));
+
+/////////////////////////////////////////////////////////////////////////////////
+
+
+      function print(string, number) {
+        let num = "";
+        let str = "";
+        for (let index = 0; index < string.length; index++) {
+          const element = string[index];
+
+          if (element <= 0 || element <= 9) {
+            num = num + string[index];
+          } else if (element == "[") {
+            let [stri, l] = findstring(string, index + 1);
+
+            str = str + print(stri, num);
+            num = "";
+            index = l;
+          } else {
+            str = str + element;
+          }
+        }
+
+        return str.repeat(number);
+      }
+
+      function findstring(string, strt) {
+        let str = "";
+        while (string[strt] != "]") {
+          if (string[strt] == "[") {
+            str = str + string[strt];
+            let [s, l] = findstring(string, strt + 1);
+
+            strt = l + 1;
+
+            str = str + s;
+            str = str + "]";
+            continue;
+          }
+          str = str + string[strt];
+          strt++;
+        }
+
+        return [str, strt];
+      }
+
+
+
+  //let a="3[a2[c]]";
+ //console.log(print(a,1));
